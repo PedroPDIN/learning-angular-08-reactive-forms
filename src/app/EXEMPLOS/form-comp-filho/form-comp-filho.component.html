@@ -1,0 +1,10 @@
+<form [formGroup]="pessoaForm">
+  <label>Nome:</label>
+  <input type="text" formControlName="nome" />
+
+  <br>
+
+  <app-endereco [pessoaForm]="pessoaForm"></app-endereco>
+
+  <button (click)="enviar()" [disabled]="!pessoaForm.valid">Enviar</button>
+</form>

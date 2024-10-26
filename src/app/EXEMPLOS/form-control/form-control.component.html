@@ -1,0 +1,43 @@
+<label for="name">Nome: </label>
+<input type="text" id="name" [formControl]="name" (input)="inputValue()" />
+
+<div style="color: red">
+  <span *ngIf="name.hasError('required')">O campo é obrigatório</span>
+
+  <span *ngIf="name.hasError('minlength') && !name.hasError('required')">
+    E necessário no mínimo 6 caracteres.
+  </span>
+
+  <span *ngIf="name.hasError('maxlength') && !name.hasError('required')">
+    E necessário no máximo 7 caracteres.
+  </span>
+
+  <span *ngIf="name.hasError('invalidText') && !name.hasError('required')">
+    {{ name.errors?.['invalidText'] + '.'}}
+  </span>
+</div>
+
+<p>
+  Valor Digitado: <strong>{{ name.value }}</strong>
+</p>
+
+<p>
+  Valor Digitado: <strong>{{ name.valid }}</strong>
+</p>
+
+<button (click)="mostrarStatus()">Mostra Status</button>
+<button (click)="alterarValor()">Alterar Status</button>
+
+<br> <br>
+
+<button (click)="habilitarBtn()">Habilitar</button>
+<button (click)="desabilitarBtn()">Desabilitar</button>
+
+<br> <br>
+
+<button (click)="reset()">Reset</button>
+
+<br><br>
+
+<!-- <button (click)="setValidators()">Set Validators</button> -->
+<button (click)="addValidators()">Add Validators</button>

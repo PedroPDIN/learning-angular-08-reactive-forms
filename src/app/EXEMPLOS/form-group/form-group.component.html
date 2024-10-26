@@ -1,0 +1,42 @@
+<form [formGroup]="pessoaForm" (ngSubmit)="onFormSubmit()">
+  <label for="name">Nome: </label>
+  <input type="text" id="name" formControlName="nome">
+  <p *ngIf="nome.hasError('required')">O nome é obrigatório</p>
+
+  <br>
+
+  <label for="email">Email: </label>
+  <input type="text" id="email" formControlName="email">
+  <p *ngIf="email.hasError('required')">O Email é obrigatório</p>
+
+  <br>
+
+  <div formGroupName="endereco">
+    <label for="rua">Rua: </label>
+    <input type="text" id="rua" formControlName="rua">
+    <p *ngIf="rua.hasError('required')">O Campo Rua é obrigatório</p>
+
+    <br>
+
+    <label for="numero">Numero: </label>
+    <input type="text" id="numero" formControlName="numero">
+    <p *ngIf="numero.hasError('required')">O Campo Numero é obrigatório</p>
+  </div>
+
+  <button
+    type="submit"
+    [disabled]="!pessoaForm.valid" (click)="mostrarValue()">
+    Enviar
+  </button>
+
+  <br>
+
+  <button (click)="alteracaoTotal()">Alteração Total</button>
+
+  <br>
+
+  <button (click)="alteracaoParcial()">Alteração Parcial</button>
+
+  <p>Formulário Válido: {{ pessoaForm.valid }}</p>
+  <p>Formulário Endereço Válido: {{ pessoaForm.get('endereco')?.valid }}</p>
+</form>
